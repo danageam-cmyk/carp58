@@ -1,23 +1,22 @@
-#include "intro.h"
-#include "vehicle.h"
+#
 #include <iostream>
-#include <vector>
+#include "vehicle.h"
+#include "intro.h"
 
 void intro() {
-    car_t car("Toyota", "Corolla", 1500, 5);
-    suv_t suv("BMW", "X5", 3000, true);
-    truck_t truck("MAN", "TGX", 4000, 10);
+    car_t car("BMW", 2022, 25000);
+    suv_t suv("Toyota", 2023, 35000);
+    truck_t truck("Volvo", 2021, 50000);
 
-    std::vector<vehicle_t*> vehicles = {
-        &car, &suv, &truck
+    vehicle_t* vehicles[] = {
+        &car,
+        &suv,
+        &truck
     };
 
-    std::cout << "=== CAR RENTAL ===\n\n";
+    int size = sizeof(vehicles) / sizeof(vehicles[0]);
 
-    for (std::size_t i = 0; i < vehicles.size(); ++i) {
-        std::cout << vehicles[i]->to_string() << '\n';
-        std::cout << "Price for 3 days: "
-            << vehicles[i]->calculate_price(3)
-            << " UAH\n\n";
+    for (int i = 0; i < size; i++) {
+        std::cout << vehicles[i]->to_string() << std::endl;
     }
 }
